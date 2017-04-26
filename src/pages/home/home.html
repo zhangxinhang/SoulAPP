@@ -4,5 +4,14 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <button (click)="clickNews()">hello</button>
+  <button ion-button (click)="addNewPost()">添加文章</button>
+  <ion-list>
+    <ion-item *ngFor="let post of posts">
+      <ion-avatar item-left>
+        <img [src]="post.raw_url">
+      </ion-avatar>
+      <h2>{{post.title}}</h2>
+      <h3>{{post.submit_time}}</h3>
+    </ion-item>
+  </ion-list>
 </ion-content>

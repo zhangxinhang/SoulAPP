@@ -12,17 +12,32 @@ import 'rxjs/add/operator/toPromise'
 })
 export class HomePage implements OnInit{
   data = {};
+  posts=[];
   constructor(public navCtrl: NavController,private homeService:HomeService,private http:Http) {
+     console.log('homepage constructor');       
+    
   }
-
+   
   ngOnInit(): void {
-    console.log('homepage init');    
+    console.log('homepage init'); 
+     this.http.get('/api/posts').subscribe(res=>{
+      var newposts =  res.json()._embedded.posts
+      console.log(newposts);
+      this.posts = newposts;
+    },err => console.log(err))
   }
  
-  clickNews():void {
+  addNewPost():void {
     console.log('click news');
-    this.http.get('/mvapi/mobile/sharelink').toPromise().then(function(result){
+    this.http.post('/api/posts',{
+      title:'hello,test',
+      raw_url:'http://cdn-qn0.jianshu.io/assets/web/logo-58fd04f6f0de908401aa561cda6a0688.png',
+      buy_url:'https://www.jd.com',
+      submit_time:new Date()
+    }).toPromise().then(function(result){
       console.log(result);
+    },function(err){
+      console.log(err);
     })
   }
 

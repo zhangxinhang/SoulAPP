@@ -4,7 +4,7 @@
   "v2": true,
   "typescript": true,
   "proxies": [{
-    "path": "/mvapi",
-    "proxyUrl": "http://www.vilsale.com/mvapi"
+    "path": "/api",
+    "proxyUrl": "http://localhost:8080/api"
   }]
 }
